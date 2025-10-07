@@ -8,6 +8,7 @@
 
 #define ADDIN_API_CLASSIFICATION_LABELS_ENDPOINT "/api/v1/classification-labels"
 #define ADDIN_API_CLASSIFICATION_XML_FONTS "/api/v1/xml-fonts"
+#define ADDIN_API_CLASSIFICATION_SETTINGS "/api/v1/classification-settings"
 
 
 std::string load_file(const std::string &path)
@@ -28,6 +29,7 @@ int main()
 
     svr.Get(ADDIN_API_CLASSIFICATION_LABELS_ENDPOINT, std::bind(&RequestsHandler::getClassificationLabels, &reqHandler, std::placeholders::_1, std::placeholders::_2));
     svr.Get(ADDIN_API_CLASSIFICATION_XML_FONTS, std::bind(&RequestsHandler::getClassificationFonts, &reqHandler, std::placeholders::_1, std::placeholders::_2));
+    svr.Get(ADDIN_API_CLASSIFICATION_SETTINGS, std::bind(&RequestsHandler::getClassificationSettings, &reqHandler, std::placeholders::_1, std::placeholders::_2));
 
     svr.set_mount_point("/", "officeAddin/src");
 

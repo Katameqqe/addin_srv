@@ -89,4 +89,34 @@ struct XMLClassificationData
     )
 };
 
+struct ClassificationSettings
+{
+    ClassificationSettings(std::string aName, std::vector<std::string> aValues, std::vector<FontData> aHdr, std::vector<FontData> aFtr, WaterMarkData aWm):
+        name(aName),
+        values(aValues),
+        hdr(aHdr),
+        ftr(aFtr),
+        wm(aWm) {}
+    ClassificationSettings(std::string aName, std::vector<std::string> aValues, XMLClassificationData aXMLData):
+        name(aName),
+        values(aValues),
+        hdr(aXMLData.hdr),
+        ftr(aXMLData.ftr),
+        wm(aXMLData.wm) {}
+
+    std::string name;
+    std::vector<std::string> values;
+    std::vector<FontData> hdr;
+    std::vector<FontData> ftr;
+    WaterMarkData wm;
+
+    PBNJSON_SERIALIZE( ClassificationSettings,
+        (std::string, name)
+        (std::vector<std::string>, values)
+        (std::vector<FontData>, hdr)
+        (std::vector<FontData>, ftr)
+        (WaterMarkData, wm)
+    )
+};
+
 }
